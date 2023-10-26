@@ -1,0 +1,45 @@
+enum Blockchain {
+  ETHEREUM
+  BSC
+  XDAI
+  POLYGON
+  OPTIMISM
+  AVALANCHE
+  NEAR
+}
+
+enum TokenStandard {
+  ERC20
+  ERC721
+  ERC1155
+}
+
+type Account @entity {
+  id: ID! # {accountAddress}
+  balances: [Balance!]! @derivedFrom(field: "account")
+}
+
+type Token @entity {
+  id: ID! # {tokenAddress}
+  tokenStandard: TokenStandard!
+  name: String
+  symbol: String
+  decimals: Int
+  blockNumber: BigInt! # could be block at which we got first event on this token
+  timestamp: BigInt!
+}
+
+type IgnoredToken @entity {
+  id: ID! # {tokenAddress}
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type Balance @entity {
+  id: ID! # {accountAddress}|{tokenAddress}
+  account: Account!
+  token: Token!
+  balance: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}

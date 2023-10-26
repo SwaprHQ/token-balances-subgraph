@@ -1,0 +1,38 @@
+{
+  "name": "token-balances",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "prepare-arbitrum": "mustache ./config/arbitrum.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-aurora": "mustache ./config/aurora.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-avalanche": "mustache ./config/avalanche.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-bsc": "mustache ./config/bsc.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-celo": "mustache ./config/celo.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-ethereum": "mustache ./config/ethereum.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-fantom": "mustache ./config/fantom.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-gnosis": "mustache ./config/gnosis.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-optimism": "mustache ./config/optimism.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "prepare-polygon": "mustache ./config/polygon.json subgraph.template.yaml > subgraph.yaml && npm run codegen",
+    "deploy-arbitrum": "npm run prepare-arbitrum && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-arbitrum",
+    "deploy-aurora": "npm run prepare-aurora && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-aurora",
+    "deploy-avalanche": "npm run prepare-avalanche && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-avalanche",
+    "deploy-bsc": "npm run prepare-bsc && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-bsc",
+    "deploy-celo": "npm run prepare-celo && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-celo",
+    "deploy-ethereum": "npm run prepare-ethereum && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-ethereum",
+    "deploy-fantom": "npm run prepare-fantom && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-fantom",
+    "deploy-gnosis": "npm run prepare-gnosis && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-gnosis",
+    "deploy-optimism": "npm run prepare-optimism && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-optimism",
+    "deploy-polygon": "npm run prepare-polygon && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ swaprhq/token-balances-polygon",
+    "deploy-all": "npm run deploy-arbitrum && npm run deploy-aurora && npm run deploy-avalanche && npm run deploy-bsc && npm run deploy-celo && npm run deploy-ethereum && npm run deploy-fantom && npm run deploy-gnosis && npm run deploy-optimism && npm run deploy-polygon",
+    "clean": "rm -rf ./build && rm -rf ./generated && rm subgraph.yaml",
+    "create-local": "graph create --node http://localhost:8020/ nelsongaldeman/token-balances",
+    "remove-local": "graph remove --node http://localhost:8020/ nelsongaldeman/token-balances",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nelsongaldeman/token-balances"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.60.0",
+    "@graphprotocol/graph-ts": "^0.31.0",
+    "mustache": "^4.2.0"
+  }
+}
